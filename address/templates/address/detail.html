@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail</title>
+    <script>
+        function update(){
+            document.form1.action="update";
+            document.form1.submit();
+        }
+        function del(){
+            if(confirm("Are you sure")){
+                document.form1.action="delete";
+                document.form1.submit();
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>주소록 편집</h2>
+    <form action="" method="post" name="form1">
+        {% csrf_token %}
+        <table >
+            <tr>
+                <td> name   </td>
+                <td> <input type="text" name="name" value="{{addr.name}}">   </td>
+            </tr>
+            <tr>
+                <td>  tel  </td>
+                <td><input type="text" name="tel" value="{{addr.tel}}">   </td>
+            </tr>
+            <tr>
+                <td> email</td>
+                <td> <input type="text" name="email" value="{{addr.email}}">   </td>
+            </tr>
+            <tr>
+                <td> address </td>
+                <td> <input type="text" name="address" value="{{addr.address}}">   </td>
+            </tr>    
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="hidden" name="idx" value ="{{addr.idx}}">
+                    <input type="button" value="수정" onclick="update()">
+                    <input type="button" value="삭제" onclick="del()">
+                </td>
+            </tr>
+        </table>
+        
+
+    </form>
+</body>
+</html>

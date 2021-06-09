@@ -31,3 +31,36 @@ def insert(request):
     addr.save()
     # 리다이렉트 http://localhost/address 로 이동
     return redirect('/address')
+
+# http://localhost/address/detail 회원상세화면 
+def detail(request):
+    # 쿼리스트링으로 전달된 변수(get 방식)
+    id = request.GET['idx']
+    # address 테이블의 레코드 중에서 idx 값으로 조회
+    addr = Address.objects.get(idx = id)
+    # detail.html로 넘어가서 출력됨
+    return render(
+        request, 
+        'address/detail.html',
+        {'addr':addr}
+    )
+
+def update(request):
+    id = request.POST['idx'] #hidden으로 전달된 글번호
+    # 수정할 내용을 편집
+    addr = Address(
+        idx = id,
+        name = request.POST['name'],
+        tel = request.POST['tel'],
+        email = request.POST['email'],
+        address = request.POST['address'],
+    )
+    addr.save()
+    return redirect('/address')
+
+def delete(request):
+    id = request.POST['idx'] #hidden으로 전달된 글번호
+    # 수정할 내용을 편집
+    addr = Address.objects.get(idx = id)
+    addr.delete()
+    return redirect('/address')

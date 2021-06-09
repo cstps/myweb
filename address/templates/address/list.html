@@ -21,7 +21,7 @@
         {% for row in items %}
         <tr>
             <td>{{row.idx}}</td>
-            <td>{{row.name}}</td>
+            <td><a href="detail?idx={{row.idx}}">{{row.name}}</a></td>
             <td>{{row.tel}}</td>
             <td>{{row.email}}</td>
             <td>{{row.address}}</td>
