@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+# 날짜 포맷 변경
+from django.conf.locale.ko import formats as ko_formats
+ko_formats.DATETIME_FORMAT = 'Y-m-d G:i:s'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'address',
+    'memo',
+    'survey',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +62,8 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], #추가
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

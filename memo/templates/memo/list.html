@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoList</title>
+</head>
+<body>
+    <h2>MemoList</h2>
+    <form action="insert_memo" method="post">
+        {% csrf_token %}
+        Name : <input type="text" name="writer" id="" size=5>
+        Memo : <input type="text" name="memo" id="">
+        <input type="submit" value="확인">
+    </form>
+    {{memoCount}} 개의 메모가 있습니다. 
+    <table border="1" cellspacing="">
+        <tr>
+            <th>Num</th>
+            <th>Name</th>
+            <th>Memo</th>
+            <th>Date</th>
+        </tr>
+        {% for row in memoList %}
+        <tr>
+            <td>{{ row.idx }} </td>
+            <td>{{ row.writer }}</td> </td>
+            <td><a href="detail?idx={{ row.idx }}">{{ row.memo }} </a></td>
+            <td>{{ row.post_date }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

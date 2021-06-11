@@ -24,4 +24,5 @@ urlpatterns = [
     path('',views.home),
     # address/urls.py 를 포함시킴
     path('address/',include('address.urls')),
+    path('memo/',include('memo.urls')),
 ]
