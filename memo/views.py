@@ -42,3 +42,4 @@ def delete_memo(request):
     memo = Memo.objects.get(idx=id)
     memo.delete()
     return redirect('/memo')
+

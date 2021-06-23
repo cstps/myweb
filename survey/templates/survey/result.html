@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Result</h2>
+    <table border=1>
+        <tr align=center>
+            <th>문항</th>
+            <th>응답수</th>
+            <th>응답비율</th>
+        </tr>
+        {% for row, ans in surveyList %}
+        <tr>
+            <td>{{ans}}</td>
+            <td>{{row.sum_num}}</td>
+            <td>{{row.rate}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">main</a>
+    <a href="/survey">survey</a>
+</body>
+</html>

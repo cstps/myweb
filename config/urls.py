@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from config import views
+from django.conf import settings
+from django.conf.urls import url
 
 urlpatterns = [
     # http://localhost/admin/ => 관리자 페이지로
@@ -25,4 +27,19 @@ urlpatterns = [
     # address/urls.py 를 포함시킴
     path('address/',include('address.urls')),
     path('memo/',include('memo.urls')),
+
+    # survey/urls.py
+    path('survey/',include('survey.urls')),
+    
+    path('guestbook/',include('guestbook.urls')),
+
+    path('member/',include('member.urls')),
 ]
+
+if settings.DEBUG: #디버그 모드일 경우
+    import debug_toolbar
+    # 디버그를 위한 url pattern 추가
+    urlpatterns +=[
+        # r 정규표현식 시작표시, 
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]
